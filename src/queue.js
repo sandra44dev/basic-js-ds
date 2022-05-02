@@ -19,6 +19,7 @@ class Queue {
   constructor() {
     this.head;
     this.tail;
+    this.node = new ListNode;
   }
 
   getUnderlyingList() {
@@ -33,11 +34,11 @@ class Queue {
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    const headValue = this.head.value;
+    this.head = this.head.next;
+    return headValue;
   }
 }
-
 module.exports = {
   Queue
 };

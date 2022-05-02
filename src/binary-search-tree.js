@@ -54,9 +54,21 @@ class BinarySearchTree {
     }
   }
 
-  find(/* data */) { //returns node with the data if node with the data exists in the tree and null otherwise
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) { //returns node with the data if node with the data exists in the tree and null otherwise
+    return addWithin(this._root, data);
+    //функция работает как has(), но возвращает узел вместо true и null вместо false
+
+    function addWithin(node, data) {
+      if (!node) {
+        return null;
+      }
+      if (node.data === data) {
+        return node;
+      }
+      return data < node.data ?
+        addWithin(node.left, data) :
+        addWithin(node.right, data)
+    }
   }
 
   remove(/* data */) { //removes node with the data from the tree if node with the data exists

@@ -1,44 +1,63 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { Node } = require('../extensions/list-tree.js');
+const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
 class BinarySearchTree {
+  constructor() {
+    this._root = null; //через нижнее подчеркивание, т.к. значение root зарезервировано
+  }
 
-  root() {
+  root() { //return root node of the tree
+    return this._root;
+  }
+
+  add(data) { //add node with data to the tree
+
+    this._root = addWithin(this._root, data);
+
+    function addWithin(node, data) {
+      if (!node) { //если узел пустой, добавь туда новый узел
+        return new Node(data);
+      }
+      if (node.data === data) { //если новое значение = значение в узле, просто верни этот узел
+        return node;
+      }
+      if (data < node.data) { //если новое значение меньше значения в узле, добавь его как левого потомка
+        node.left = addWithin(node.left, data);
+      } else { //если больше, добавь его в качестве правого потомка
+        node.right = addWithin(node.right, data);
+      }
+      return node;
+    }
+
+  }
+
+
+  has(/* data */) { //returns true if node with the data exists in the tree and false otherwise
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
-  add(/* data */) {
+  find(/* data */) { //returns node with the data if node with the data exists in the tree and null otherwise
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
-  has(/* data */) {
+  remove(/* data */) { //removes node with the data from the tree if node with the data exists
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
-  find(/* data */) {
+  min() { //returns minimal value stored in the tree (or null if tree has no nodes)
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  max() {
+  max() { //eturns maximal value stored in the tree (or null if tree has no nodes)
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }

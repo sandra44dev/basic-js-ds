@@ -17,7 +17,7 @@ class BinarySearchTree {
 
   add(data) { //add node with data to the tree
 
-    this._root = addWithin(this._root, data);
+    this._root = addWithin(this._root, data); //функция начинает работать с корня
 
     function addWithin(node, data) {
       if (!node) { //если узел пустой, добавь туда новый узел
@@ -37,9 +37,21 @@ class BinarySearchTree {
   }
 
 
-  has(/* data */) { //returns true if node with the data exists in the tree and false otherwise
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) { //returns true if node with the data exists in the tree and false otherwise
+
+    return addWithin(this._root, data); //функция начинает поиск с корня, передаём указатель на корень и искомое значение
+
+    function addWithin(node, data) {
+      if (!node) {  //если узел пустой, возвращаем false
+        return false;
+      }
+      if (node.data === data) { //если значение в узле совпадает с искомым - true
+        return true;
+      }
+      return data < node.data ? //значение в ноде больше искомого?
+        addWithin(node.left, data) : //тогда продолжай искать в левом поддереве
+        addWithin(node.right, data) //если меньше - ищи в правом
+    }
   }
 
   find(/* data */) { //returns node with the data if node with the data exists in the tree and null otherwise

@@ -77,8 +77,16 @@ class BinarySearchTree {
   }
 
   min() { //returns minimal value stored in the tree (or null if tree has no nodes)
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (!this._root) {
+      return null;
+    }
+
+    let node = this._root;
+
+    while (node.left) { //пока слева есть потомок
+      node = node.left; //продолжай присваивать его значение переменной node 
+    }
+    return node.data; //затем верни это значение
   }
 
   max() { //eturns maximal value stored in the tree (or null if tree has no nodes)
